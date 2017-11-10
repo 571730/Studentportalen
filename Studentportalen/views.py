@@ -80,6 +80,9 @@ def fag(request, emne_id):
             emne_kalk(emne_id)
             return redirect(request.path_info)
 
+        else:
+            redirect(request.path_info)
+
     else:
         form = VurderingForm()
 
