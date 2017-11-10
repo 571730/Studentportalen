@@ -1,0 +1,355 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
+html, body {
+    overflow-x: hidden;
+}
+html{
+    min-height: 100%;
+    position: relative;
+}
+body{
+    margin:0;
+    padding-bottom: 400px;
+}
+
+#footer{
+    margin-bottom: 0;
+    color: white;
+    background-color: #4e4f51;
+}
+#navbrand1{
+    font-weight: 100;
+    margin-right: 0;
+}
+.navbar-brand{
+    font-weight: 100;
+}
+#navBrand2{
+    font-weight: 400;
+    margin-left: 0;
+    color: #dfb674;
+}
+.dropdown-menu {
+    background-color: rgba(0,0,0,0.1);
+    transition: background-color .5s ease 0s;
+}
+
+#navBar {
+    /*background-color: #073650;*/
+    background-color: rgba(0,0,0,0.1);
+    position: fixed;
+    /*overflow: hidden;*/
+    width: 100%;
+    top: 0;
+    z-index: 1;
+    transition: background-color .5s ease 0s;
+}
+#fagContainer{
+    min-height: 100%;
+}
+#navLeftItem{
+    padding-right: 40px;
+}
+.sokKnapp{
+    border-color: white;
+    margin-right: 20px;
+    color: white;
+}
+.sokKnapp:hover{
+    background-color: #dfb674;
+    border-color: #dfb674;
+}
+
+#navBar a{
+    color: white;
+}
+.active {
+    border-bottom: solid;
+    border-bottom-color: #4e4f51;
+}
+
+.dropdown-item:hover {
+    background-color: #4e4f51;
+}
+.container-fluid {
+    padding-right:0;
+    padding-left:0;
+    margin-right:auto;
+    margin-left:auto;
+}
+#headerJumbo{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #073650;
+    width: 50%;
+    opacity: 0.4;
+    position: absolute;
+    margin-top: 10px;
+
+}
+
+
+#headerContainer{
+    width: 100%;
+}
+
+#titleJumbo {
+    text-align: center;
+    background-color: #073650;
+    color: #ffffff;
+    margin: 0;
+    border-radius: 0;
+}
+#anmJumbo{
+    background-color: #073650;
+    color: #dfb674;
+    text-align: center;
+}
+#titleJumbo h1{
+    color: #dfb674;
+}
+#footerJumbo {
+    margin: 0;
+    background-color: #4e535b;
+    border-radius: 0;
+}
+#pageContainer{
+    padding: 0;
+}
+#infoJumbo {
+    background-color: #cccccc;
+    border-radius: 5px;
+    margin: 15px;
+}
+#infoJumbo h3{
+    color: white;
+}
+#tittelTable{
+    color: #68a8ad;
+    margin: 20px;
+}
+#tittelTable2{
+    color: #68a8ad;
+    margin: 50px 0 20px 0;
+}
+h3{
+    text-align: center;
+}
+.table a{
+    font-weight: bold;
+    color: #dfb674;
+}
+.table a:hover{
+    color: #4e4f51;
+    text-decoration: none;
+}
+#footerJumbo p{
+    text-align: center;
+    color: white;
+}
+#footerJumbo h4{
+    text-align: center;
+    color: white;
+}
+#fagTittel {
+    margin: 1%;
+    text-align: center;
+    background-color: #dfb674;
+}
+#fagTittel h1{
+    color: white;
+}
+#fagTittel h4{
+    color: #4e535b;
+}
+#lesMer{
+    margin-top: 1%;
+    color: white;
+    background-color: #607d8b;
+}
+#lesMer:hover{
+    background-color: #9e9e9e;
+}
+#sokFag{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+#fagUl{
+    padding-bottom: 3%;
+}
+#fagUl a{
+    color: #dfb674;
+}
+#fagUl a:hover{
+    color: #4e535b;
+    text-decoration: none;
+}
+.footer {
+    text-align: center;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 15%;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #4e535b;
+}
+.progress {
+    margin-top: 2.5%;
+    font-size: 1.4em;
+
+}
+.progress-bar {
+    height: 1em;
+}
+.tittelBar {
+    float: left;
+    margin-right: 1em;
+    width: 8em;
+}
+#containerBars {
+    padding: 1em 0 5em 0;
+}
+#btnReview{
+    border: none;
+    margin-top: 2%;
+    color: white;
+    background-color: #dfb674;
+}
+#btnReview:hover{
+    background-color: #4e535b;
+}
+#reviewsJumbo{
+    color: #dfb674;
+    text-align: center;
+    margin: 3em 0 2em 0;
+    background-color: #073650;
+}
+.tekstFot{
+    margin-top: 3em;
+}
+.vurdListe{
+    display: inline-block;
+}
+.vurdListe ul li h3{
+    background-color: #073650;
+    color: #dfb674;
+    width: 35px;
+    border-radius: 100%;
+    text-align: center;
+
+}
+.vurdListe ul li{
+    display: inline;
+}
+.jumboReview{
+    background-color: white;
+    border-top: solid 1px;
+    border-radius: 0
+}
+.fagHeaderBesk{
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 55%;
+    width: 100%;
+}
+.fagHeaderTittel{
+    font-size: 500%;
+    text-align: center;
+    color: #dfb674;
+    position: absolute;
+    top: 35%;
+    width: 100%;
+}
+
+.scoreBlob{
+    border: solid 1px #073650;
+    border-radius: 5px;
+    margin-bottom: 10%;
+}
+.minBtnInverse{
+    background-color: #dfb674;
+    color: #073650;
+    border-color: #dfb674;
+}
+.minBtnInverse:hover {
+    background-color: #0a5783;
+    cursor: pointer;
+    color: white;
+    border-color: #0a5783;
+}
+.minBtn{
+    background-color: #073650;
+    color: #dfb674;
+    border-color: #073650;
+}
+.minBtn:hover{
+    background-color: #0a5783;
+    cursor: pointer;
+    color: #dfb674;
+    border-color: #0a5783;
+}
+#sidebar{
+    color: white;
+    height: 100%;
+    min-height: 100%;
+    background-color: #073650;
+}
+#tittelOm{
+    padding-top: 10%;
+    border-bottom: solid 1px #dfb674;
+}
+#mainColIndex{
+    margin-top: 40px;
+}
+.containerPaddingTop{
+    margin-top: 40px;
+}
+
+
+
+
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+    border: none;
+    float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+

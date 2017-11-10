@@ -1,0 +1,171 @@
+{% extends 'Studentportalen/base.html' %}
+{% block head_title %}{{ emne.navn }} {% endblock %}
+
+{% block body %}
+
+    <!-- HEADER BILDE -->
+        <div id="headerContainer" class="container-fluid">
+        {% load staticfiles %}
+            <img title="Bildet er tatt av https://unsplash.com/@lucabravo" class="img-responsive" style="width: 100%" src="{% static 'bilder/ingFAGv2.png' %}" id="headerBilde">
+            <h1 class="fagHeaderTittel">{{ emne.navn }}</h1>
+            <h3 class="fagHeaderBesk">{{ emne.beskrivelse }}</h3>
+        </div>
+
+    <div class="container-fluid containerPaddingTop">
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <!-- Info om faget -->
+            <div class="col-md-8" id="fagTekst">
+                <h1>{{ emne.navn }}</h1>
+                <h4>{{ emne.beskrivelse }}</h4>
+                <p>{{ emne.info }}</p>
+                <br>
+            <div class="text-center">
+                <a target="_blank" href="https://www.hvl.no/studier/studieprogram/emne/{{ emne.navn }}">
+                    <button class="btn btn-primary">Les mer om faget på HVL sine sider</button>
+                </a>
+            </div>
+            <br>
+
+                <!-- Her kommer  alle tidligere reviews -->
+                <div class="jumbotron" id="reviewsJumbo">
+                    <h4>Studenters vurdering av faget</h4>
+                </div>
+                <div class="container" id="containerBars">
+                    <h3 style="text-align: center; padding-bottom: 30px">Gjennomsnittlig vurdering av faget</h3>
+                <div class="container">
+                <h5 class="tittelBar">Vanskelighetsgrad</h5>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ width.vansk }}%" aria-valuenow="{{ verdi.vansk }}" aria-valuemin="0" aria-valuemax="5">{{ verdi.vansk }}</div>
+                </div>
+                </div>
+                <div class="container">
+                    <h5 class="tittelBar">Interessant</h5>
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ width.int }}%" aria-valuenow="{{ verdi.inte }}" aria-valuemin="0" aria-valuemax="5">{{ verdi.inte }}</div>
+                </div>
+                </div>
+                <div class="container">
+                    <h5 class="tittelBar">Arbeidsmengde</h5>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{ width.arb }}%" aria-valuenow="{{ verdi.arb }}" aria-valuemin="0" aria-valuemax="5">{{ verdi.arb }}</div>
+                </div>
+                </div>
+                </div>
+                <div class="container" id="container-reviews">
+                    {% for vurdering in vurderinger %}
+                        <div class="jumbotron jumboReview">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <h5>Skrevet av:</h5>
+                                    <h3>{{ vurdering.bruker }}</h3>
+                                </div>
+                                <div class="col-md-5">
+                                    <h3 style="padding: 10px 0 10px 0; text-align: left">{{ vurdering.tittel }}</h3>
+                                    <p>{{ vurdering.kommentar }}</p>
+                                </div>
+                                <div class="col-md-5">
+                            <ul class="vurdListe" style="padding-top: 30px">
+                                <li style="display: block">
+                                    <ul>
+                                        <li style="display: inline-block"><h5 style="padding-right: 21px">Vanskelighetsgrad: </h5></li>
+                                        <li style="display: inline-block"><h3>{{ vurdering.vanskelig }}</h3></li>
+                                    </ul>
+                                </li>
+                                <li style="display: block">
+                                    <ul>
+                                        <li style="display: inline-block"><h5 style="padding-right: 104px">Interesse: </h5></li>
+                                        <li style="display: inline-block"><h3>{{ vurdering.interesse }}</h3></li>
+                                    </ul>
+                                </li>
+                                <li style="display: block">
+                                    <ul>
+                                        <li style="display: inline-block"><h5 style="padding-right: 43px">Arbeidsmengde: </h5></li>
+                                        <li style="display: inline-block"><h3>{{ vurdering.arbeid }}</h3></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+
+                            </div>
+
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+                <!--
+                <h5>Hvor vanskelig er dette faget?</h5>
+                <p id="vanskelig"></p>
+                <h5>Hvor interessant er dette faget?</h5>
+                <p id="interessant"></p>
+                                            -->
+
+                <!-- Her er input til review-->
+                    <div class="jumbotron" id="anmJumbo">
+                        <h4>Skriv en anmeldelse av faget</h4>
+                    </div>
+                <!--
+                <form method="post" novalidate>
+                <div class="form-group">
+                    <div class="jumbotron" id="anmJumbo">
+                        <h4>Skriv en anmeldelse av faget</h4>
+                    </div>
+                    <label for="sel1">Hvor vanskelig er dette faget?</label>
+                    <select class="form-control" id="sel1">
+                        <option>1 - Veldig lett</option>
+                        <option>2 - Lett</option>
+                        <option>3 - Middels</option>
+                        <option>4 - Vanskelig</option>
+                        <option>5 - Veldig vanskelig</option>
+                    </select>
+                    <label for="sel2">Hvor interessant er dette faget?</label>
+                    <select class="form-control" id="sel2">
+                        <option>1 - Veldig lite</option>
+                        <option>2 - Litt</option>
+                        <option>3 - Middels</option>
+                        <option>4 - Interessant</option>
+                        <option>5 - Veldig interessant</option>
+                    </select>
+                    <label for="sel3">Hvor mye arbeid inngår i dette faget?</label>
+                    <select class="form-control" id="sel3">
+                        <option>1 - Veldig lite</option>
+                        <option>2 - Lite</option>
+                        <option>3 - Middels</option>
+                        <option>4 - Mye</option>
+                        <option>5 - Veldig mye</option>
+                    </select>
+                    <label for="kommentar">Kortfattet anmeldelse av dette faget</label>
+                    <textarea class="form-control" rows="5" id="kommentar"></textarea>
+                    <button type="submit" class="btn btn-primary btn-block" id="btnReview">Send inn</button>
+
+                </div>
+                    </form> -->
+                {% if user.is_authenticated %}
+                <form method="post" action=".">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="text-danger small">{{ field.errors }}</span>
+                        </div>
+                        <!-- <label class="control-label col-sm-2" for="song_title"></label> -->
+                        <label for="song_title">{{ field.label_tag }}</label>
+                       <!-- <div class="col-sm-10"></div> -->
+                    <div class="form-control" rows="5"> {{ field }} </div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary btn-block" id="btnReview">Send inn</button>
+                </form>
+                {% else %}
+                <h3>Venligst <a href="{% url 'Studentportalen:login_user' %}">logg inn</a> for å skrive en vurdering til dette faget.</h3>
+                {% endif %}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+{% endblock %}

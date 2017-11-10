@@ -1,0 +1,100 @@
+{% extends 'Studentportalen/base.html' %}
+{% block head_title %}Studentportalen{% endblock %}
+
+{% block body %}
+
+    <!-- HEADER BILDE -->
+    <div id="headerContainer" class="container-fluid">
+        {% load staticfiles %}
+        <img title="Bildet er tatt av https://unsplash.com/@cikstefan" class="img-responsive" style="width: 100%" src="{% static 'bilder/headerForsideUtkast3.png' %}" id="headerBilde">
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="container" id="sidebar">
+
+            <h3 id="tittelOm">Hva er Studentportalen?</h3>
+                <br>
+            <p>De fleste studenter ved HVL har noen valgfag. Det kan være vanskelig å bestemme seg for hvilke fag en skal
+             bruke disse valgfagene på.</p>
+            <p>Her på denne siden kan du finne vurderinger av de forksjellige fagene, skrevet av dine medstudenter ved HVL.</p>
+            <p>På denne måten kan du være sikker på å få en ærlig vurdering av f.eks vanskelighetsgraden på de forksjellige fagene.</p>
+                <br>
+                <a href="{% url 'Studentportalen:emner' %}">
+                    <button class="btn btn-danger btn-block btn-lg minBtnInverse">Se på alle fagene</button>
+                </a>
+
+            </div>
+            </div>
+        <div class="col-md-9" id="mainColIndex">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                <div class="container-fluid scoreBlob">
+                    <h3>De vanskeligste fagene</h3>
+                <br>
+                    {% for emnet in emn_vansk %}
+                        <a href="{% url 'Studentportalen:fag' emne_id=emnet.pk%}">
+                            <button class="btn btn-primary minBtn">
+                                {{ emnet.navn }}
+                            </button>
+                        </a>
+                        <h5 class="score">Score: {{ emnet.vanskelig }}</h5>
+                        <br>
+                    {% endfor %}
+                </div>
+                </div>
+            <div class="col-md-6 text-center">
+                <div class="container-fluid scoreBlob">
+                    <h3>Fagene som krever mest arbeid</h3>
+                <br>
+                    {% for emnet in emne_arb %}
+                        <a href="{% url 'Studentportalen:fag' emne_id=emnet.pk%}">
+                            <button class="btn btn-primary minBtn">
+                                {{ emnet.navn }}
+                            </button>
+                        </a>
+                        <h5 class="score">Score: {{ emnet.arbeid }}</h5>
+                        <br>
+                    {% endfor %}
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                <div class="container-fluid scoreBlob">
+                    <h3>Fagene med flest vurderinger</h3>
+                <br>
+                    {% for emnet in emne_anta %}
+                        <a href="{% url 'Studentportalen:fag' emne_id=emnet.pk%}">
+                            <button class="btn btn-primary minBtn">
+                                {{ emnet.navn }}
+                            </button>
+                        </a>
+                        <h5 class="score">Score: {{ emnet.antall }}</h5>
+                        <br>
+                    {% endfor %}
+                </div>
+                </div>
+            <div class="col-md-6 text-center">
+                <div class="container-fluid scoreBlob">
+                    <h3>De mest interessante fagene</h3>
+                <br>
+                    {% for emnet in emne_inte %}
+                        <a href="{% url 'Studentportalen:fag' emne_id=emnet.pk%}">
+                            <button class="btn btn-primary minBtn">
+                                {{ emnet.navn }}
+                            </button>
+                        </a>
+                        <h5 class="score">Score: {{ emnet.interesse }}</h5>
+                        <br>
+                    {% endfor %}
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+{% endblock %}

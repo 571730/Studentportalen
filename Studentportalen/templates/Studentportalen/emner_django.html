@@ -1,0 +1,22 @@
+{% extends 'Studentportalen/base.html' %}
+
+{% block head_title %}Emner{% endblock %}
+
+{% block body %}
+
+<div id="headerContainer" class="container-fluid">
+        {% load staticfiles %}
+        <img title="Bildet er tatt av https://unsplash.com/@alexisrbrown" class="img-responsive" style="width: 100%" src="{% static 'bilder/IngEmneV2.png' %}" id="headerBilde">
+
+    </div>
+    </div>
+    <div class="container">
+        <input type="text" class="form-control" id="sokFag" onkeyup="finnFag()" placeholder="Søk etter fag..">
+        <ul class="list-group" id="fagUl">
+            {% for emne in emner %}
+            <li class="list-group-item"><a href="{% url 'Studentportalen:fag' emne.id %}">{{ emne.navn }} - {{ emne.beskrivelse }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+{% endblock %}

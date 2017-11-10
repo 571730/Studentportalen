@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block head_title %}{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main.css' %}" type="text/css">
+    <link rel="icon" href="{% static 'bilder/LeLogo.png' %}" sizes="48x48" />
+    <script src="{% static 'jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'main.js' %}"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50" style="background-color: white; color: #4e4f51;">
+<div class="container-fluid">
+
+    <!-- NAVBAR START -->
+
+    <nav class="navbar navbar-inverse navbar-toggleable-md opaque-navbar" id="navBar">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'Studentportalen:index' %}" id="navBrand1">
+            <img src="{% static 'bilder/LeLogo.png' %}" style="width: 30px;height: 30px; margin-right: 30px">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                 <li class="nav-item {% if request.path == '/' %} active {% endif %}">
+                    <a class="nav-link" href="{% url 'Studentportalen:index' %}">Hjem{% if request.path == url %}<span class="sr-only">(current)</span>{% endif %}</a>
+                </li>
+
+                <li class="nav-item {% if request.path == '/emner/' %} active {% endif %}">
+                    <a class="nav-link" href="{% url 'Studentportalen:emner' %}">Emner
+                        {% if request.path == url %}<span class="sr-only">(current)</span>{% endif %}</a>
+                </li>
+            </ul>
+        <!--
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="f.eks DAT100">
+                <button class="btn btn-outline-success my-2 my-sm-0 sokKnapp" type="submit">Søk</button>
+            </form>
+            -->
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown" id="navLeftItem">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop-menu">
+                        <a class="dropdown-item" href="#">Min Profil</a>
+                        <a class="dropdown-item" href="#">Anmeldelser</a>
+                        <a class="dropdown-item" href="#">Kommentarer </a>
+                        <a class="dropdown-item" href="#"> </a>
+                        <a class="dropdown-item" href="{% url 'Studentportalen:logout_user' %}">Logg ut</a>
+                    </div>
+                </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'Studentportalen:registrering' %}">
+                            <button class="btn btn-outline-success my-2 my-sm-0 sokKnapp">Registrer bruker</button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'Studentportalen:login_user' %}">
+                            <button class="btn btn-outline-success my-2 my-sm-0 sokKnapp">Logg inn</button>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- NAVBAR SLUTT -->
+
+    <!-- HOVEDSIDE START -->
+
+<div class="container-fluid" id="pageContainer">
+    {% block body %}
+
+    {% endblock %}
+
+</div>
+</div>
+<!--
+<footer class="footer" id="footer">  -->
+<!-- <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footer"> -->
+ <!--   <div class="row tekstFot">
+        <div class="col-md-4">
+            <h4>Lorem ipsum.</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, qui?</p>
+        </div>
+        <div class="col-md-4">
+            <h4>Lorem ipsum.</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, omnis?</p>
+        </div>
+        <div class="col-md-4">
+            <h4>Lorem ipsum.</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, quisquam!</p>
+        </div>
+    </div> -->
+<!-- </nav> -->
+<!-- </footer> -->
+
+<script>
+    $(document).ready(function() {
+        var docHeight = $(window).height();
+        var footerHeight = $('#footer').height();
+        var footerTop = $('#footer').position().top + footerHeight;
+
+        if (footerTop < docHeight) {
+            $('#footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
+        }
+    });
+
+    $(document).ready(function() {
+        var banner_height = $("#headerBilde").height();
+        var lastScrollTop = 0;
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+            var currScrollTop = $(this).scrollTop();
+            if (scroll >= banner_height) {
+                $("#navBar").css({'background-color': 'rgba(7,54,80,1)'});
+                $("#drop-menu").css({'background-color': 'rgba(7,54,80,1)'});
+            } else {
+                $("#navBar").css({'background-color': 'rgba(7,54,80,0.1)'});
+                $("#drop-menu").css({'background-color': 'rgba(7,54,80,0.1)'});
+            }
+            lastScrollTop = currScrollTop;
+
+
+        });
+
+    });
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
