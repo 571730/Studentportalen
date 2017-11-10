@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from .models import Emne, Studie, Vurdering
-from .forms import VurderingForm, UserForm
+from .forms import VurderingForm, UserForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -112,12 +112,13 @@ def emne_kalk(emne_id):
 
 
 def login_view(request):
-    form = UserForm()
+    form = LoginForm
 
     if request.method == 'POST':
 
         username = request.POST['username']
         password = request.POST['password']
+
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -144,12 +145,22 @@ def register(request):
             user = form.save(commit=False)
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user.set_password(password)
-            user.save()
-            user = authenticate(username=username, password=password)
-            login(request, user)
+            password2 = form.cleaned_data['password2']
+            if password == password2:
 
-            return render(request, 'Studentportalen/index_django.html')
+                user.set_password(password)
+                user.save()
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                return redirect("/")
+
+            else:
+                return render(request, 'Studentportalen/registrering.html',
+                              {'form': form, 'error_message': 'Passordene er ikke like'})
+        else:
+            return render(request, 'Studentportalen/registrering.html',
+                          {'form': form, 'error_message': 'Brukernavnet er tatt'})
+
     else:
         form = UserForm()
         context = {

@@ -45,12 +45,22 @@ class VurderingForm(ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput(
+    username = forms.CharField(label='Velg et brukernavn:', widget=forms.TextInput(
         attrs={
             'class': 'form-control'
         }
     ))
-    password = forms.CharField(widget=forms.PasswordInput(
+    email = forms.CharField(label='Din epost:', widget=forms.EmailInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+    password = forms.CharField(label='Passord:', widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+    password2 = forms.CharField(label='Gjenta passord:', widget=forms.PasswordInput(
         attrs={
             'class': 'form-control'
         }
@@ -64,3 +74,20 @@ class UserForm(forms.ModelForm):
             'email': _('Epost'),
             'password': _('Passord'),
         }
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(label='Brukernavn', widget=forms.TextInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+
+    password = forms.CharField(label='Passord:', widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control'
+        }
+    ))
+
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
